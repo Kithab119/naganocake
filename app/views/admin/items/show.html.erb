@@ -1,0 +1,17 @@
+<h2>商品詳細</h2>
+
+  <div>
+    <%= image_tag @item.item_image %>
+  </div>
+
+  <div>
+    <%= @item.name %>
+    <%= @item.introduction %>
+    <%= @item.genre_id %>
+    <%= @item.price %>
+    <%= @item.is_active %>
+  </div>
+
+  <div>
+    <%= link_to "編集する", edit_admin_item_path %>
+  </div>

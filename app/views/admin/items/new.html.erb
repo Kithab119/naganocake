@@ -1,0 +1,39 @@
+<h2>商品新規登録</h2>
+
+<%= form_with model: @item do |f| %>
+
+  <div>
+    <span>商品画像</span>
+    <span><%= f.file_field :item_image, accept: "image/*" %></span>
+  </div>
+
+  <div>
+    <span>商品名</span>
+    <span><%= f.text_field :name %></span>
+  </div>
+
+  <div>
+    <span>商品説明</span>
+    <span><%= f.text_area :introduction %></span>
+  </div>
+
+  <div>
+    <span>ジャンル</span>
+    <span><%= f.text_field :genre_id %></span>
+  </div>
+
+  <div>
+    <span>税抜価格</span>
+    <span><%= f.text_field :price %></span>
+  </div>
+
+  <div>
+    <span>販売ステータス</span>
+    <span><%= f.file_field :item_image, accept: "image/*" %></span>
+  </div>
+
+  <div>
+    <%= f.submit "新規登録" %>
+  </div>
+
+<% end %>
