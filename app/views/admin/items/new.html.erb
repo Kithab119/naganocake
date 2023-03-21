@@ -19,8 +19,8 @@
 
   <div>
     <span>ジャンル</span>
-    <span><%= f.text_field :genre_id %></span>
-  </div>
+    <span><%= f.collection_select(:genre_id, @genres, :id, :name) %></span>
+  </div><!--collection_select(:保存したいカラム, :モデル, :カラム, :表示するカラム)-->
 
   <div>
     <span>税抜価格</span>
@@ -29,7 +29,8 @@
 
   <div>
     <span>販売ステータス</span>
-    <span><%= f.file_field :item_image, accept: "image/*" %></span>
+    <span><%= f.radio_button :is_active, :true %>販売中</span>
+    <span><%= f.radio_button :is_active, :false %>販売停止中</span>
   </div>
 
   <div>
