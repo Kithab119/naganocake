@@ -1,4 +1,4 @@
-<h2>さんの会員詳細</h2>
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
 
 <div>
   <span>会員ID</span>
@@ -37,7 +37,13 @@
 
 <div>
   <span>会員ステータス</span>
-  <span></span>
+  <span>
+    <% if @customer.is_deleted == true %>
+      <span>退会</span>
+    <% else %>
+      <span>有効</span>
+    <% end %>
+  </span>
 </div>
 
 <div>
