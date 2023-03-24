@@ -2,26 +2,66 @@
 
 <div>
   <span>購入者</span>
-  <span></span>
+  <span><%= @order.shipping_name %></span>
 </div>
 
 <div>
   <span>注文日</span>
-  <span></span>
+  <span><%= @order.created_at %></span>
 </div>
 
 <div>
   <span>配送先</span>
-  <span></span>
+  <span><%= @order.shipping_postal_code %><%= @order.shipping_address %><%= @order.shipping_name %></span>
 </div>
 
 <div>
   <span>支払方法</span>
-  <span></span>
+  <span><%= @order.is_receive %></span>
 </div>
 
 <div>
   <span>注文ステータス</span>
-  <span></span>
-  <span></span>
+  <% form_with model: @order do |f| %>
+    <span><%= f.collection_select(:is_receive, @order, :is_receive, :is_receive) %></span>
+    <span><%= f.submit "更新" %></span>
+  <% end %>
 </div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @order.order_details.each do |order_detail| %>
+        <td>
+          <% order_detail.item.each do |item| %>
+            <%= item.name %>
+          <% end %>
+        </td>
+        <td><%= order_detail.purchase %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.purchase*order_detail.amount %></td>
+        <td>
+          <% form_with model: @order_detail do |f| %>
+            <%= f.collection_select(:is_create, @order_details, :is_create, :is_create) %>
+            <%= f.submit "更新" %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+
+<div></div>
+<div></div>
+<div></div>
