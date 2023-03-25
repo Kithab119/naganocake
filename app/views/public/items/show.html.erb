@@ -6,4 +6,8 @@
   <%= @item.name %>
   <%= @item.introduction %>
   <%= @item.price %>(税込)
+  <% form_with model: @item.cart_items, url: cart_item_path do |f| %>
+    <span><%= f.select(:amount, ["1","2","3","4","5"]) %></span>
+    <span><%= f.submit "カートに入れる" %></span>
+  <% end %>
 </div>

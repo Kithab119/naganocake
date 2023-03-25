@@ -43,7 +43,7 @@
     <tr>
       <% @order.order_details.each do |order_detail| %>
         <td>
-          <% order_detail.item.each do |item| %>
+          <% order_detail.items.each do |item| %>
             <%= item.name %>
           <% end %>
         </td>
@@ -51,7 +51,7 @@
         <td><%= order_detail.amount %></td>
         <td><%= order_detail.purchase*order_detail.amount %></td>
         <td>
-          <% form_with model: @order_detail do |f| %>
+          <% form_with model: @order_detail, url: admin_root_path do |f| %>
             <%= f.collection_select(:is_create, @order_details, :is_create, :is_create) %>
             <%= f.submit "更新" %>
           <% end %>
@@ -62,6 +62,15 @@
 </table>
 
 
-<div></div>
-<div></div>
-<div></div>
+<div>
+  <span>商品合計</span>
+  <span></span>
+</div>
+<div>
+  <span>送料</span>
+  <span></span>
+</div>
+<div>
+  <span>請求金額合計</span>
+  <span></span>
+</div>
