@@ -16,11 +16,12 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params{:id})
+    @item = Item.find(params[:id])
   end
 
   def edit
     @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 
   def update

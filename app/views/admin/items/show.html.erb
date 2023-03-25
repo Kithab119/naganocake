@@ -5,11 +5,30 @@
   </div>
 
   <div>
-    <%= @item.name %>
-    <%= @item.introduction %>
-    <%= @item.genre_id %>
-    <%= @item.price %>
-    <%= @item.is_active %>
+    <span>商品名</span>
+    <span><%= @item.name %></span>
+  </div>
+  <div>
+    <span>商品説明</span>
+    <span><%= @item.introduction %></span>
+  </div>
+  <div>
+    <span>ジャンル</span>
+    <span><%= @item.genre.name %></span>
+  </div>
+  <div>
+    <span>税込価格<br>(税抜価格)</span>
+    <span><%= @item.price %>(<%= @item.price %>)</span>
+  </div>
+  <div>
+    <span>販売ステータス</span>
+    <span>
+      <% if @item.is_active == true %>
+       <p>販売中</p>
+      <% else %>
+        <p>販売停止中</p>
+      <% end %>
+    </span>
   </div>
 
   <div>

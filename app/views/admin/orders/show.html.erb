@@ -23,7 +23,8 @@
 <div>
   <span>注文ステータス</span>
   <% form_with model: @order do |f| %>
-    <span><%= f.collection_select(:is_receive, @order, :is_receive, :is_receive) %></span>
+    <span><%= f.select[["入金待ち", "waiting_payment"],["入金確認", "payment_confirmation"],["制作中", "production"],["発送準備中", "shipping_preparation"],["発送済み", "sent"]] %></span>
+<%#= f.select :is_receive, Order.is_receive.keys.map {|k| [I18n.t("enums.order.is_receive.#{k}"), k]} %>
     <span><%= f.submit "更新" %></span>
   <% end %>
 </div>

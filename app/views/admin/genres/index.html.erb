@@ -19,7 +19,7 @@
 
   <div>
     <span><%= genre.name %></span>
-    <span><%= link_to "編集する", edit_admin_genre_path %></span>
+    <span><%= link_to "編集する", edit_admin_genre_path(genre.id) %></span>
   </div>
 
 <% end %>
