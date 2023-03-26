@@ -3,11 +3,6 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions" #registrations => 登録画面、passwords => パスワード変更、sessions => ログイン画面
 }
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   scope module: :public do #URLは変わらずに、コントローラを呼び出せる
@@ -36,5 +31,10 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
+
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
 
 end
