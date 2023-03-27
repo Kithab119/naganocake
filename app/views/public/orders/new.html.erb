@@ -1,0 +1,15 @@
+<h2>注文情報入力</h2>
+
+<%= form_with model: @order, url: orders_order_check, method: :post do |f| %>
+  <div>
+    <span>支払方法</span>
+    <span>
+      <%= f.radio_buttun :payment, %><br>
+      <%= f.radio_buttun :payment, %>
+    </span>
+  </div>
+  <div>
+    <span>お届け先</span>
+    <span></span>
+  </div>
+<% end %>

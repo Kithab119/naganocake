@@ -8,7 +8,7 @@ class Public::AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
-     #binding.pry
+     #binding.pry(アクションをここで止める)  Gemfileにgem 'pry-byebug'
     @address.save
     redirect_to addresses_path
   end
