@@ -15,12 +15,12 @@
     <% @cart_items.each do |cart_item| %>
       <tr>
         <td><%= image_tag cart_item.item.item_image, :size =>'50x50' %><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.price %></td>
+        <td><%= (cart_item.item.price*1.1).floor %></td>
         <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
           <td><%= f.select :amount, *[1..10] %><%= f.submit "変更" %></td>
         <% end %>
-        <td><%= cart_item.item.price*cart_item.amount %></td>
-        <% @sum+=cart_item.item.price*cart_item.amount %>
+        <td><%= (cart_item.item.price*1.1).floor*cart_item.amount %></td>
+        <% @sum+=(cart_item.item.price*1.1).floor*cart_item.amount %>
         <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete %></td>
       </tr>
     <% end %>

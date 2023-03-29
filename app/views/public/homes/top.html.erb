@@ -7,7 +7,7 @@
 
 <% @items.each do |item| %>
   <div>
-    <%= image_tag item.item_image %>
+    <%= image_tag item.item_image, :size => '270x170' %>
     <%= item.name %>
     ¥<%= item.price %>
   </div>
