@@ -5,7 +5,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def order_check
-    #@order = Order.new(order_params)
   end
 
   def index

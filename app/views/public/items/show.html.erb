@@ -9,5 +9,7 @@
   <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
     <span><%= f.select :amount, *[1..10] %></span>
     <span><%= f.submit "カートに入れる" %></span>
+    <%= f.hidden_field :item_id, :value => @item.id %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
   <% end %>
 </div>
