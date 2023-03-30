@@ -17,9 +17,14 @@
     </div>
     <div>
       <%= f.radio_button :select_address, "1" %><%= f.label :select_address_1, "登録済住所から選択" %>
-      <%= f.select :>
+      <p><%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></p>
+    </div>　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　<!-- :渡す値, :表示する値-->
+    <div>
+      <%= f.radio_button :select_address, "2" %><%= f.label :select_address_2, "新しいお届け先" %>
+      <p>郵便番号(ハイフンなし)<%= f.text_field :shipping_postal_code %></p>
+      <p>住所<%= f.text_field :shipping_address %></p>
+      <p>宛名<%= f.text_field :shipping_name %></p>
     </div>
-    <div><%= f.radio_button :select_address, "2" %><%= f.label :select_address_2, "新しいお届け先" %></div>
   </div>
   <div>
     <%= f.submit "確認画面に進む" %>

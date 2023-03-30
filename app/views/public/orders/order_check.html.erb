@@ -1,1 +1,43 @@
 <h2>注文情報確認</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= image_tag cart_item.item.item_image, :size =>'50x50' %><%= cart_item.item.name %></td>
+        <td><%= (cart_item.item.price*1.1).floor %></td>
+          <td><%= cart_item.amount %></td>
+        <td><%= (cart_item.item.price*1.1).floor*cart_item.amount %></td>
+        <% @sum+=(cart_item.item.price*1.1).floor*cart_item.amount %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div>
+  <h3>支払方法</h3>
+  <%= @order.payment %>
+</div>
+
+<div>
+  <h3>お届け先</h3>
+  <%= @order.shipping_postal_code %>
+  <%= @order.shipping_address %>
+  <%= @order.shipping_name %>
+</div>
+
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+  <%= hidden_field @order.shipping_postal_code %>
+  <%= hidden_field @order.shipping_address %>
+  <%= hidden_field @order.shipping_name %>
+  <%= f.submit "注文を確定する" %>
+<% end %>
