@@ -39,14 +39,14 @@
   <span>会員ステータス</span>
   <span>
     <% if @customer.is_deleted == true %>
-      <span>退会</span>
+      <span class="text-danger"><strong>退会</strong></span>
     <% else %>
-      <span>有効</span>
+      <span class="text-success"><strong>有効</strong></span>
     <% end %>
   </span>
 </div>
 
 <div>
-  <span><%= link_to "編集する", edit_admin_customer_path(@customer.id) %></span>
-  <span><%= link_to "注文履歴一覧を見る", admin_root_path %></span>
+  <span><%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %></span>
+  <span><%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary" %></span>
 </div>

@@ -5,21 +5,22 @@
   <div>
     <span>ジャンル名</span>
     <span><%= f.text_field :name %></span>
-  </div>
-
-  <div>
-    <%= f.submit "新規登録" %>
+    <span><%= f.submit "新規登録", class: "btn btn-success" %></span>
   </div>
 
 <% end %>
 
-
-<h3>ジャンル</h3>
-<% @genres.each do |genre| %>
-
-  <div>
-    <span><%= genre.name %></span>
-    <span><%= link_to "編集する", edit_admin_genre_path(genre.id) %></span>
-  </div>
-
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th><h3>ジャンル</h3></th>
+    </tr>
+  <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+        <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

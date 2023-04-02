@@ -1,6 +1,6 @@
 <h2>注文履歴一覧</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>購入日時</th>
@@ -10,9 +10,9 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% @orders.each do |order| %>
-        <td><%= order.created_at %></td>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id), class: "text-dark" %></td>
         <td><%= order.shipping_name %></td>
         <td>
           <% total=0 %>
@@ -21,9 +21,9 @@
           <% end %>
           <%= total %>
         </td>
-        <td><%= order.is_receive %></td>
-      <% end %>
-    </tr>
+        <td><%= order.is_receive_i18n %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
