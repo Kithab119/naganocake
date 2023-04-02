@@ -24,20 +24,35 @@
 </table>
 
 <div>
+  <span>送料</span>
+  <span>800</span>
+</div>
+<div>
+  <span>商品合計</span>
+  <span><%= @sum %></span>
+</div>
+<div>
+  <span>請求金額</span>
+  <span><%= 800 + @sum %></span>
+</div>
+
+<div>
   <h3>支払方法</h3>
-  <%= @order.payment %>
+  <%= @order.payment_i18n %>
 </div>
 
 <div>
   <h3>お届け先</h3>
-  <%= @order.shipping_postal_code %>
+  〒<%= @order.shipping_postal_code %>
   <%= @order.shipping_address %>
   <%= @order.shipping_name %>
 </div>
 
 <%= form_with model: @order, url: orders_path, method: :post do |f| %>
-  <%= hidden_field @order.shipping_postal_code %>
-  <%= hidden_field @order.shipping_address %>
-  <%= hidden_field @order.shipping_name %>
+  <%= f.hidden_field :payment, :value => @order.payment %>
+  <%= f.hidden_field :shipping_postal_code, :value => @order.shipping_postal_code %>
+  <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
+  <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
+  <%= f.hidden_field :claim, :value => (@sum + 800) %>
   <%= f.submit "注文を確定する" %>
 <% end %>

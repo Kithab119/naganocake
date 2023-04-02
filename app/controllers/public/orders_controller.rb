@@ -9,16 +9,15 @@ class Public::OrdersController < ApplicationController
     @sum = 0
     @order = Order.new(order_params)
 
-    if select_address == 0
-      @order.shipping_postal_code = current_customer.postal_code
+    if params[:order][:select_address] == "0"
+      @order.shipping_postal_code = current_customer.postal_code
       @order.shipping_address = current_customer.address
       @order.shipping_name = current_customer.first_name + current_customer.last_name
-    elsif select_address == 1
-      address
-    else select_address == 2
-      @order.shipping_postal_code
-      @order.shipping_address
-      @order.shipping_name
+    elsif params[:order][:select_address] == "1"
+      address = Address.find(params[:order][:address_id])
+      @order.shipping_postal_code = address.postal_code
+      @order.shipping_address = address.address
+      @order.shipping_name = address.name
     end
   end
 
@@ -32,6 +31,8 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.postage = 800
     @order.save
     redirect_to orders_finish_path
   end
