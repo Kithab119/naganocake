@@ -4,23 +4,23 @@
   <h3>注文情報</h3>
   <div>
     <span>注文日</span>
-    <span><%= @order.created_at %></span>
+    <span><%= @order.created_at.strftime("%Y/%m/%d") %></span>
   </div>
    <div>
     <span>配送先</span>
     <span>
-      <%= @order.shipping_postal_code %><br>
+      〒<%= @order.shipping_postal_code %><br>
       <%= @order.shipping_address %><br>
       <%= @order.shipping_name %>
     </span>
   </div>
    <div>
     <span>支払方法</span>
-    <span><%= @order.payment %></span>
+    <span><%= @order.payment_i18n %></span>
   </div>
    <div>
     <span>ステータス</span>
-    <span><%= @order.is_receive %></span>
+    <span><%= @order.is_receive_i18n %></span>
   </div>
 </div>
 
@@ -28,15 +28,20 @@
   <h3>請求情報</h3>
   <div>
     <span>商品合計</span>
-    <span></span>
+    <span>
+      <% @order.order_details.each do |order_detail| %>
+        <% @sum+=order_detail.purchase*order_detail.amount %>
+      <% end %>
+      <%= @sum %>
+    </span>
   </div>
   <div>
     <span>配送料</span>
-    <span></span>
+    <span>800</span>
   </div>
   <div>
     <span>ご請求額</span>
-    <span></span>
+    <span><%= (@sum + 800) %></span>
   </div>
 </div>
 
@@ -52,7 +57,14 @@
       </tr>
     </thead>
     <tbody>
-
+      <% @order.order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.purchase %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.purchase*order_detail.amount %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
