@@ -1,6 +1,6 @@
 <h2>注文履歴一覧</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>注文日</th>
@@ -27,7 +27,7 @@
         </td>
         <td><%= order.claim %>円</td>
         <td><%= order.is_receive_i18n %></td>
-        <td><%= link_to "表示する", order_path(order.id) %></td>
+        <td><%= link_to "表示する", order_path(order.id), class: "btn btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>

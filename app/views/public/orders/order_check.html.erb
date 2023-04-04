@@ -1,6 +1,6 @@
 <h2>注文情報確認</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>商品名</th>
@@ -37,12 +37,12 @@
 </div>
 
 <div>
-  <h3>支払方法</h3>
+  <h3><strong>支払方法</strong></h3>
   <%= @order.payment_i18n %>
 </div>
 
 <div>
-  <h3>お届け先</h3>
+  <h3><strong>お届け先</strong></h3>
   〒<%= @order.shipping_postal_code %>
   <%= @order.shipping_address %>
   <%= @order.shipping_name %>
@@ -54,5 +54,5 @@
   <%= f.hidden_field :shipping_address, :value => @order.shipping_address %>
   <%= f.hidden_field :shipping_name, :value => @order.shipping_name %>
   <%= f.hidden_field :claim, :value => (@sum + 800) %>
-  <%= f.submit "注文を確定する" %>
+  <%= f.submit "注文を確定する", class: "btn btn-success" %>
 <% end %>

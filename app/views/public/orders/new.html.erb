@@ -2,14 +2,14 @@
 
 <%= form_with model: @order, url: orders_order_check_path, method: :post do |f| %>
   <div>
-    <h3>支払方法</h3>
+    <h3><strong>支払方法</strong></h3>
     <div>
       <%= f.radio_button :payment, "credit_card" %><%= f.label :payment_credit_card, "クレジットカード" %><br>
       <%= f.radio_button :payment, "transfer" %><%= f.label :payment_transfer, "銀行振込" %>
     </div>
   </div>
   <div>
-    <h3>お届け先</h3>
+    <h3><strong>お届け先</strong></h3>
     <div>
       <%= f.radio_button :select_address, "0" %><%= f.label :select_address_0, "ご自身の住所" %>
       <p>〒<%= current_customer.postal_code %><%= current_customer.address %><br>
@@ -27,6 +27,6 @@
     </div>
   </div>
   <div>
-    <%= f.submit "確認画面に進む" %>
+    <%= f.submit "確認画面に進む", class: "btn btn-primary" %>
   </div>
 <% end %>

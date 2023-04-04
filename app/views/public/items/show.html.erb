@@ -1,15 +1,19 @@
-<div>
-  <%= image_tag @item.item_image, :size => '400x300' %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <%= image_tag @item.item_image, :size => '400x300', class: "img-fluid" %>
+    </div>
 
-<div>
-  <%= @item.name %>
-  <%= @item.introduction %>
-  <%= (@item.price*1.1).floor %>(税込)
-  <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-    <span><%= f.select :amount, *[1..10] %></span>
-    <span><%= f.submit "カートに入れる" %></span>
-    <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.hidden_field :customer_id, :value => current_customer.id %>
-  <% end %>
+    <div class="col-9">
+      <%= @item.name %><br>
+      <%= @item.introduction %><br>
+      ¥<%= (@item.price*1.1).floor %>(税込)
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <span><%= f.select :amount, *[1..10] %></span>
+        <span><%= f.submit "カートに入れる", class: "btn btn-success" %></span>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <% end %>
+    </div>
+  </div>
 </div>
