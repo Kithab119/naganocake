@@ -1,36 +1,36 @@
 <h2>注文履歴詳細</h2>
 
 <div>
-  <span>購入者</span>
-  <span><%= @order.shipping_name %></span>
+  <span><strong>購入者</strong></span>
+  <span><%= link_to @order.shipping_name, admin_customer_path(@order.customer_id), class: "text-dark" %></span>
 </div>
 
 <div>
-  <span>注文日</span>
-  <span><%= @order.created_at %></span>
+  <span><strong>注文日</strong></span>
+  <span><%= @order.created_at.strftime("%Y/%m/%d") %></span>
 </div>
 
 <div>
-  <span>配送先</span>
-  <span><%= @order.shipping_postal_code %><%= @order.shipping_address %><%= @order.shipping_name %></span>
+  <span><strong>配送先</strong></span>
+  <span>〒<%= @order.shipping_postal_code %><%= @order.shipping_address %><br><%= @order.shipping_name %></span>
 </div>
 
 <div>
-  <span>支払方法</span>
-  <span><%= @order.is_receive %></span>
+  <span><strong>支払方法</strong></span>
+  <span><%= @order.payment_i18n %></span>
 </div>
 
 <div>
-  <span>注文ステータス</span>
-  <% form_with model: @order do |f| %>
-    <span><%= f.select[["入金待ち", "waiting_payment"],["入金確認", "payment_confirmation"],["制作中", "production"],["発送準備中", "shipping_preparation"],["発送済み", "sent"]] %></span>
+  <span><strong>注文ステータス</strong></span>
+  <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+    <span><%= f.select :is_receive, [["入金待ち", "waiting_payment"],["入金確認", "payment_confirmation"],["制作中", "production"],["発送準備中", "shipping_preparation"],["発送済み", "sent"]] %></span>
 <%#= f.select :is_receive, Order.is_receive.keys.map {|k| [I18n.t("enums.order.is_receive.#{k}"), k]} %>
-    <span><%= f.submit "更新" %></span>
+    <span><%= f.submit "更新", class: "btn btn-success" %></span>
   <% end %>
 </div>
 
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>商品名</th>
@@ -43,18 +43,15 @@
   <tbody>
     <tr>
       <% @order.order_details.each do |order_detail| %>
-        <td>
-          <% order_detail.items.each do |item| %>
-            <%= item.name %>
-          <% end %>
-        </td>
+        <td><%= order_detail.item.name %></td>
         <td><%= order_detail.purchase %></td>
         <td><%= order_detail.amount %></td>
         <td><%= order_detail.purchase*order_detail.amount %></td>
+            <% @sum+=order_detail.purchase*order_detail.amount %>
         <td>
-          <% form_with model: @order_detail, url: admin_root_path do |f| %>
-            <%= f.collection_select(:is_create, @order_details, :is_create, :is_create) %>
-            <%= f.submit "更新" %>
+          <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail.id) do |f| %>
+            <%= f.select :is_create, [["制作不可", "cannot_manufacture"],["制作待ち", "waiting_manufacture"],["制作中", "manufacture"],["制作完了", "complete_manufacture"]] %>
+            <%= f.submit "更新", class: "btn btn-success" %>
           <% end %>
         </td>
       <% end %>
@@ -65,13 +62,13 @@
 
 <div>
   <span>商品合計</span>
-  <span></span>
+  <span><%= @sum %></span>
 </div>
 <div>
   <span>送料</span>
-  <span></span>
+  <span>800</span>
 </div>
 <div>
   <span>請求金額合計</span>
-  <span></span>
+  <span><%= (@sum + 800) %></span>
 </div>
