@@ -47,9 +47,9 @@
         <td><%= order_detail.purchase %></td>
         <td><%= order_detail.amount %></td>
         <td><%= order_detail.purchase*order_detail.amount %></td>
-            <% @sum+=order_detail.purchase*order_detail.amount %>
+        <% @sum+=order_detail.purchase*order_detail.amount %>
         <td>
-          <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail.id) do |f| %>
+          <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id) do |f| %>
             <%= f.select :is_create, [["制作不可", "cannot_manufacture"],["制作待ち", "waiting_manufacture"],["制作中", "manufacture"],["制作完了", "complete_manufacture"]] %>
             <%= f.submit "更新", class: "btn btn-success" %>
           <% end %>
