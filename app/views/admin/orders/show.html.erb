@@ -41,8 +41,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <% @order.order_details.each do |order_detail| %>
+    <% @order.order_details.each do |order_detail| %>
+      <tr>
         <td><%= order_detail.item.name %></td>
         <td><%= order_detail.purchase %></td>
         <td><%= order_detail.amount %></td>
@@ -54,8 +54,8 @@
             <%= f.submit "更新", class: "btn btn-success" %>
           <% end %>
         </td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
