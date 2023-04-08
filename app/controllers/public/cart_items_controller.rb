@@ -12,8 +12,12 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.save
+    if CartItem.find_by(item_id:)
+  
+    else
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.save
+    end
     redirect_to cart_items_path
   end
 
