@@ -3,7 +3,8 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @items = Item.all
+    @items = Item.looks(params[:word])
+    #looksは別の名前でもOK。※モデルを参照
   end
 
   def show

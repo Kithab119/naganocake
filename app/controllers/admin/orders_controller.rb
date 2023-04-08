@@ -8,6 +8,11 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    if @order.is_receive == "payment_confirmation"
+      @order.order_details.each do |order_detail|
+        order_detail.update(is_create: "waiting_manufacture")
+      end
+    end
     redirect_to admin_order_path(@order.id)
   end
 
