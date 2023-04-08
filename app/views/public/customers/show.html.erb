@@ -1,41 +1,46 @@
 <h2>マイページ</h2>
 
-<div>
- <span><strong>登録情報</strong></span>
- <span><%= link_to "編集する", edit_customers_path, class: "btn btn-success" %></span>
-</div>
+<div class="container">
+  <div class="mb-3">
+   <span class="mr-3"><strong>登録情報</strong></span>
+   <span><%= link_to "編集する", edit_customers_path, class: "btn btn-success" %></span>
+  </div>
 
-<div>
-  <span>氏名</span>
-  <span><%= @customer.last_name %><%= @customer.first_name %></span>
-</div>
-<div>
-  <span>カナ</span>
-  <span><%= @customer.last_name_kana %><%= @customer.first_name_kana %></span>
-</div>
-<div>
-  <span>郵便番号</span>
-  <span><%= @customer.postal_code %></span>
-</div>
-<div>
-  <span>住所</span>
-  <span><%= @customer.address %></span>
-</div>
-<div>
-  <span>電話番号</span>
-  <span><%= @customer.telephone_number %></span>
-</div>
-<div>
-  <span>メールアドレス</span>
-  <span><%= @customer.email %></span>
-</div>
+  <table class="table table-bordered">
+    <tr>
+      <th class="col-2 bg-light"><strong>氏名</strong></th>
+      <td><%= @customer.last_name %><%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <th class="bg-light"><strong>カナ</strong></th>
+      <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <th class="bg-light"><strong>郵便番号</strong></th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th class="bg-light"><strong>住所</strong></th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th class="bg-light"><strong>電話番号</strong></th>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th class="bg-light"><strong>メールアドレス</strong></th>
+      <td><%= @customer.email %></td>
+    </tr>
+  </table>
 
-<div>
- <span><strong>配送先</strong></span>
- <span><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></span>
-</div>
 
-<div>
- <span><strong>注文履歴</strong></span>
- <span><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></span>
+  <div class="mt-3">
+   <span class="mr-3"><strong>配送先</strong></span>
+   <span><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></span>
+  </div>
+
+  <div class="mt-3">
+   <span class="mr-3"><strong>注文履歴</strong></span>
+   <span><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></span>
+  </div>
 </div>

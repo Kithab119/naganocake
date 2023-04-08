@@ -1,11 +1,17 @@
-<h2>商品一覧(全<%= @items.count %>件)</h2>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>商品一覧(全<%= @items.count %>件)</h2>
 
-<% @items.each do |item| %>
-  <div>
-    <%= link_to item_path(item.id) do %>
-      <%= image_tag item.item_image, :size => '270x170' %>
-    <% end %>
-    <%= link_to item.name, item_path(item.id), class: "text-dark" %>
-    ¥<%= item.price %>
+      <% @items.each do |item| %>
+        <div>
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.item_image, :size => '270x170' %>
+          <% end %>
+          <%= link_to item.name, item_path(item.id), class: "text-dark" %>
+          ¥<%= item.price %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
