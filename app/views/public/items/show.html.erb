@@ -1,10 +1,11 @@
 <div class="container">
   <div class="row">
+    <%= render 'public/items/genre-search' %>
     <div class="col-3">
       <%= image_tag @item.item_image, :size => '400x300', class: "img-fluid" %>
     </div>
 
-    <div class="col-9">
+    <div class="col-6">
       <%= @item.name %><br>
       <%= @item.introduction %><br>
       ¥<%= (@item.price*1.1).floor %>(税込)

@@ -1,40 +1,47 @@
-<h2>商品新規登録</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-3 mt-3">
+      <h4>商品新規登録</h4>
+    </div>
+    <div class="col-8 mt-5">
+      <%= form_with model: @item, url: admin_items_path(@item.id) do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <th>商品画像</th>
+            <td><%= f.file_field :item_image, accept: "image/*" %></td>
+          </tr>
 
-<%= form_with model: @item, url: admin_items_path(@item.id) do |f| %>
+          <tr>
+            <th>商品名</th>
+            <td><%= f.text_field :name %></td>
+          </tr>
 
-  <div>
-    <span>商品画像</span>
-    <span><%= f.file_field :item_image, accept: "image/*" %></span>
+          <tr>
+            <th>商品説明</th>
+            <td><%= f.text_area :introduction %></td>
+          </tr>
+
+          <tr>
+            <th>ジャンル</th>
+            <td><%= f.collection_select(:genre_id, @genres, :id, :name) %></td>
+          </tr><!--collection_select(:保存したいカラム, :モデル, :カラム, :表示するカラム)-->
+
+          <tr>
+            <th>税抜価格</th>
+            <td><%= f.text_field :price %></td>
+          </tr>
+
+          <tr>
+            <th>販売ステータス</th>
+            <td><%= f.radio_button :is_active, :true %>販売中　<%= f.radio_button :is_active, :false %>販売停止中</td>
+
+          </tr>
+        </table>
+        <div class="row justify-content-center">
+          <%= f.submit "新規登録", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-1"></div>
   </div>
-
-  <div>
-    <span>商品名</span>
-    <span><%= f.text_field :name %></span>
-  </div>
-
-  <div>
-    <span>商品説明</span>
-    <span><%= f.text_area :introduction %></span>
-  </div>
-
-  <div>
-    <span>ジャンル</span>
-    <span><%= f.collection_select(:genre_id, @genres, :id, :name) %></span>
-  </div><!--collection_select(:保存したいカラム, :モデル, :カラム, :表示するカラム)-->
-
-  <div>
-    <span>税抜価格</span>
-    <span><%= f.text_field :price %></span>
-  </div>
-
-  <div>
-    <span>販売ステータス</span>
-    <span><%= f.radio_button :is_active, :true %>販売中</span>
-    <span><%= f.radio_button :is_active, :false %>販売停止中</span>
-  </div>
-
-  <div>
-    <%= f.submit "新規登録", class: "btn btn-success" %>
-  </div>
-
-<% end %>
+</div>
